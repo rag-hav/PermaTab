@@ -3,7 +3,8 @@ var created = false;
 
 function checkAndCreate() {
 	if (!created) {
-		chrome.tabs.query({}, (tabs) => {
+
+		chrome.tabs.query({"currentWindow":true}, (tabs) => {
 			console.log(tabs.length - 1);
 			console.log(tabs[tabs.length - 1].url);
 			if (tabs[tabs.length - 1].url != newtabUrl) {
