@@ -22,7 +22,7 @@ function checkAndCreate() {
 }
 
 function checkAndDelete(i = -2) {
-	chrome.tabs.query({}, (tabs) => {
+	chrome.tabs.query({"currentWindow":true}, (tabs) => {
 		var tar = tabs[(i >= 0) ? i : tabs.length + i];
 		if (tar.url == newtabUrl && !tar.active) {
 			chrome.tabs.remove(tar.id, () => {});
@@ -31,7 +31,7 @@ function checkAndDelete(i = -2) {
 }
 
 function removeEnd() {
-	chrome.tabs.query({}, (tabs) => {
+	chrome.tabs.query({"currentWindow":true}, (tabs) => {
 		if (tabs[tabs.length - 1].url == newtabUrl) {
 			for (var i = tabs.length - 2; i >= 0; i--) {
 				if (tabs[i].url == newtabUrl && !tabs[i].active)
@@ -44,7 +44,7 @@ function removeEnd() {
 }
 
 function removeAll() {
-	chrome.tabs.query({}, (tabs) => {
+	chrome.tabs.query({"currentWindow":true}, (tabs) => {
 		if (tabs[tabs.length - 1].url == newtabUrl) {
 			for (var i = tabs.length - 2; i >= 0; i--) {
 				if (tabs[i].url == newtabUrl && !tabs[i].active)
